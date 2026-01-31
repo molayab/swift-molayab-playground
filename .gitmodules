@@ -1,4 +1,4 @@
 [submodule "swift-background-scheduler"]
-	path = Libraries/swift-background-scheduler
+	path = Modules/swift-background-scheduler
 	url = git@github.com:molayab/swift-background-scheduler.git
     branch = master
