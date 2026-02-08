@@ -10,17 +10,13 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query(sort: \Item.createdAt, order: .reverse) private var items: [Item]
 
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(items) { item in
-                    HStack {
-                        Text("Background sheduled exec at:")
-                        Spacer()
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+                    Text(item.name)
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -31,6 +27,11 @@ struct ContentView: View {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Delete All") {
+                        deleteItems(offsets: IndexSet(items.indices))
+                    }
                 }
 #endif
                 ToolbarItem {
@@ -46,7 +47,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Item(name: "\(Date())")
             modelContext.insert(newItem)
         }
     }

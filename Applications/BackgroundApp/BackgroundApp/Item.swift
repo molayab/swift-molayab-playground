@@ -10,9 +10,10 @@ import SwiftData
 
 @Model
 final class Item: Sendable {
-    var timestamp: Date
+    var createdAt: Date = Date()
+    var name: String
     
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+    init(name: String) {
+        self.name = name
     }
 }

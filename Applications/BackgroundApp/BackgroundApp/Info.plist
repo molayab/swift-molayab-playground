@@ -4,7 +4,7 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>SCHEDULER_BG_TRIGGER</string>
+		<string>com.example.backgroundapp.refresh</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
